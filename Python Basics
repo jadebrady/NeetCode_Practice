@@ -676,4 +676,87 @@ print(get_reverse_sorted([1, 2, 3]))
 print(get_reverse_sorted([5, 6, 4, 2, 7, 3, 1]))
 print(get_reverse_sorted([5, 6, -4, 2, 4, 7, -3, -1]))
 
+
 Custom Heap - create a heap with a custom profile
+
+we can simulate a custom heap by using a tuple as the element in the heap.
+
+import heapq
+from typing import List
+
+def get_reverse_sorted(nums: List[int]) -> List[int]:
+    # Create an empty list that we’ll use as our heap
+    heap = []
+    
+    # Loop through every number in the input list
+    for i in nums:
+        # Python's heapq only gives us a "min heap" (smallest first).
+        # To make it behave like a "max heap" (largest first), 
+        # we push a tuple: (-i, i).
+        #   - "-i" ensures that the biggest number becomes the "smallest" 
+        #     in heap terms, so it will come out first.
+        #   - "i" is the original value we actually care about.
+        pair = (-i, i)
+        
+        # Push this tuple into the heap
+        heapq.heappush(heap, pair)
+    
+    # Prepare a result list to hold the sorted numbers
+    result = []
+    
+    # Keep taking items out of the heap until it’s empty
+    while heap:
+        # Pop the smallest tuple (based on the -i part).
+        # Since we negated the numbers earlier, 
+        # this actually gives us the largest original number each time.
+        pair = heapq.heappop(heap)
+        
+        # Get back the original number from the second element of the tuple
+        og = pair[1]
+        
+        # Add it to the result list
+        result.append(og)
+    
+    # When the heap is empty, we’ve collected all numbers in reverse sorted order
+    return result
+
+
+
+# do not modify below this line
+print(get_reverse_sorted([1, 2, 3]))
+print(get_reverse_sorted([5, 6, 4, 2, 7, 3, 1]))
+print(get_reverse_sorted([5, 6, -4, 2, 4, 7, -3, -1]))
+
+Heaps nsmallest
+
+import heapq
+from typing import List
+
+
+def get_min_element(arr: List[int]) -> int:
+    return heapq.nsmallest(1, arr)
+
+
+def get_min_4_elements(arr: List[int]) -> List[int]:
+    # Return elements in *increasing* order
+    return heapq.nsmallest(4, arr)
+
+
+def get_min_2_elements(arr: List[int]) -> List[int]:
+    # Return elements in *decreasing* order
+    min2 = heapq.nsmallest(2, arr)
+    return min2[::-1] # Reverse the list
+
+# do not modify below this line
+print(get_min_element([1, 2, 3]))
+print(get_min_element([3, 2, 1, 4, 6, 2]))
+print(get_min_element([1, 9, 7, 3, 2, 1, 4, 6, 2]))
+
+print(get_min_4_elements([1, 9, 7, 3, 2, 1, 4, 6, 2]))
+print(get_min_4_elements([1, 9, 7, 2, 1, 3, 2, 1, 4, 6, 2, 1]))
+print(get_min_4_elements([1, 9, 7, 2, 3, 2, 4, 6, 2]))
+
+print(get_min_2_elements([1, 9, 7, 3, 2, 1, 4, 6, 2]))
+print(get_min_2_elements([1, 9, 7, 2, 1, 3, 2, 1, 4, 6, 2, 1]))
+print(get_min_2_elements([1, 9, 7, 2, 3, 2, 4, 6, 2]))
+
