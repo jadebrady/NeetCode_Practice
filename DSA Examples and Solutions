@@ -1,0 +1,106 @@
+Microsoft Prep
+
+# Print n times (user inputted)
+n = input("enter a number: ")
+
+for i in range(int(n)):
+    print("hello world")
+
+
+Neetcode
+
+Two Sum - Hash Maps and Arrays
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        prevMap = {}  # hashmap to remember numbers we've seen (number -> index)
+
+        # loop through the list with index (i) and number (n)
+        for i, n in enumerate(nums):  #enumerate adds the index
+            diff = target - n  # the number we need to find to reach the target
+            
+            # if the "needed number" is already in our hashmap,
+            # that means we found the pair (the previous one and the current one)
+            if diff in prevMap:
+                return [prevMap[diff], i]  # return their indexes
+            
+            # otherwise, store the current number and its index in the hashmap
+            prevMap[n] = i  
+
+        # not really needed since the problem guarantees a solution,
+        # but it's here for completeness
+        return
+
+Valid Anagram - Hash Maps and Arrays
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        # if the lengths are different, they can never be anagrams
+        if len(s) != len(t):
+            return False
+
+        countS, countT = {}, {}  # hashmap to count characters in s and t
+
+        # loop through both words at the same time
+        for i in range(len(s)):
+            # add +1 to the count of the character in s
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+
+            # add +1 to the count of the character in t
+            countT[t[i]] = 1 + countT.get(t[i], 0)
+
+        # now compare the counts of every character in s
+        for c in countS:
+            # if a character in s doesn't match the count in t, not an anagram
+            if countS[c] != countT.get(c, 0):
+                return False
+
+        # if all counts match, it's an anagram
+        return True
+
+Other easier solution
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        return sorted(s) == sorted(t)
+
+
+Group Anagrams - Hash Maps and Arrays
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    
+    res = {}  # dictionary to store groups of anagrams
+               # key = letter count signature of a word
+               # value = list of words matching that signature
+
+    for s in strs:  # loop through every word in the input list
+        count = [0] * 26  # create a list of 26 zeros, one for each letter a-z
+                           # count[i] will store how many times letter i appears in the word
+
+        # count the frequency of each letter in the current word
+        for c in s:
+            # ord(c) - ord("a") converts letter to index: 'a' -> 0, 'b' -> 1, ..., 'z' -> 25
+            # increment the count at that index
+            count[ord(c) - ord("a")] += 1
+
+        # convert the list of counts to a tuple so it can be used as a dictionary key
+        # this tuple is a "signature" for the word: all anagrams will have the same signature
+        key = tuple(count)
+
+        # add the word to the group corresponding to its signature
+        if key not in res:
+            res[key] = []  # create a new list if this is the first word with this signature
+        res[key].append(s)  # append the current word to the correct anagram group
+
+    # return all groups of anagrams as a list of lists
+    return list(res.values())
+
+
+
+Product of Array Except Self - Static Arrays + Prefix Sums
+
+
+
+
+
+
+
