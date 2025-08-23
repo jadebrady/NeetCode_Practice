@@ -9,25 +9,23 @@ sorted(list, reversed=True, key=function eg. lambda, abs, one i wrote myself)
 list.sort(same as above)
 # sort changes the original list
 
+
 Pythonic Code
 
 unpacking
 
 from typing import List, Tuple
 
-
 def sum_3_integers(triplet: List[int]) -> int:
     n1, n2, n3 = triplet
     sumof = n1 + n2 + n3
     return sumof
-
 
 def compute_volume(box_dimensions: Tuple[int, int, int]) -> int:
     b1, b2, b3 = box_dimensions
     sumof = b1 * b2 * b3 # volume of a box n x n x n
     return sumof
   
-
 # do not modify below this line
 print(sum_3_integers([1, 2, 3]))
 print(sum_3_integers([4, 6, 2]))
@@ -41,18 +39,17 @@ Loop Unpacking
 
 from typing import List, Tuple
 
-
 def best_student(scores: List[Tuple[str, int]]) -> str:
     scores.sort(key=lambda x: x[1], reverse=True) # Getting the score index of the list
     for name, score in scores:
         return name # getting just the name to return
-
 
 # do not modify below this line
 print(best_student([("Alice", 90), ("Bob", 80), ("Charlie", 70)]))
 print(best_student([("Alice", 90), ("Bob", 80), ("Charlie", 100)]))
 print(best_student([("Alice", 90), ("Bob", 100), ("Charlie", 70)]))
 print(best_student([("Alice", 90), ("Bob", 90), ("Charlie", 80), ("David", 100)]))
+
 
 Enumerate
 nums = [2, 7, 9, 2]
@@ -65,30 +62,25 @@ Zip function - Python
 
 from typing import List, Dict
 
-
 def group_names_and_scores(names: List[str], scores: List[int]) -> Dict[str, int]:
     name_score = {}
     for name, score in zip(names, scores):
         name_score[name] = score
     return name_score
         
-
-
 # do not modify below this line
 print(group_names_and_scores(["Alice", "Bob", "Charlie"], [90, 80, 70]))
 print(group_names_and_scores(["Jane", "Carol", "Charlie"], [25, 100, 60]))
 print(group_names_and_scores(["Doug", "Bob", "Tommy"], [80, 90, 100]))
 
+
 Inequality
 from typing import List
-
 
 def is_arr_valid(names: List[str], max_length: int) -> bool:
     if 0 < len(names) <= max_length:
         return True
     return False
-
-
 
 # do not modify below this line
 print(is_arr_valid(["Alice", "Bob", "Charlie"], 3))
@@ -102,20 +94,17 @@ Resizable Lists
 
 from typing import List
 
-
 def append_elements(arr1: List[int], arr2: List[int]) -> List[int]:
     for item in arr2:
         arr1.append(item)
     return arr1
-
 
 def pop_n(arr: List[int], n: int) -> List[int]:
     for i in range(n):
         if n > len(arr) - 1:
             return []
         arr.pop(len(arr)-1)
-    return arr
-        
+    return arr     
 
 def insert_at(arr: List[int], index: int, element: int) -> List[int]:
     if index > len(arr):
@@ -123,7 +112,6 @@ def insert_at(arr: List[int], index: int, element: int) -> List[int]:
     else:
         arr.insert(index, element)
     return arr
-
 
 # do not modify below this line
 print(append_elements([1, 2, 3], [4, 5, 6]))
@@ -136,22 +124,20 @@ print(pop_n([1, 2, 3, 4, 5], 5))
 print(insert_at([1, 2, 3, 4, 5], 2, 6))
 print(insert_at([1, 2, 3, 4], 6, 5))
 
+
 Resizable List 2
 from typing import List
-
 
 def append_elements(arr1: List[int], arr2: List[int]) -> List[int]:
     for item in arr2:
         arr1.append(item)
     return arr1
   
-
 def remove_elements(arr1: List[int], arr2: List[int]) -> List[int]:
     for i in arr2:
         if i in arr1:
             arr1.remove(i)
     return arr1
-
 
 # do not modify below this line
 print(append_elements([1, 2, 3], [4, 5, 6]))
@@ -165,12 +151,9 @@ print(remove_elements([1, 7, 2, 3, 4, 5], [6, 7, 8, 2]))
 List Concat
 from typing import List
 
-
 def combine_elements(arr1: List[int], arr2: List[int]) -> List[int]:
     newlist = arr1 + arr2
     return newlist
-
-
 
 # do not modify below this line
 arr1 = [1, 3, 5]
@@ -180,17 +163,15 @@ print(combine_elements(arr1, arr2))
 print(arr1)
 print(arr2)
 
+
 List Initialisation
 
 from typing import List
-
 
 def create_list_with_value(size: int, index: int, value: int) -> List[int]:
     myList = [0] * size
     myList[index] = value
     return myList
-
-
 
 # do not modify below this line
 print(create_list_with_value(5, 3, 7))
@@ -202,13 +183,10 @@ print(create_list_with_value(10, 9, 0))
 List Cloning
 from typing import List
 
-
 def remove_element(arr: List[int], element: int) -> List[int]:
     arrClone = arr.copy()
     arrClone.remove(element)
     return arrClone
-
-
 
 # do not modify below this line
 arr = [1, 3, 5, 7, 9]
@@ -220,16 +198,15 @@ print(arr)
 print(remove_element(arr, 1))
 print(arr)
 
+
 List comprehension
 
 # making a list with only odd numbers, size depending on the number n
 
 from typing import List
 
-
 def create_list_of_odds(n: int) -> List[int]:
     return [i for i in range(1, n + 1, 2)]
-
 
 # do not modify below this line
 print(create_list_of_odds(1))
@@ -237,10 +214,10 @@ print(create_list_of_odds(5))
 print(create_list_of_odds(6))
 print(create_list_of_odds(10))
 
+
 Stack Push(append) and Pop
 
 from typing import List
-
 
 def reverse_list(arr: List[int]) -> List[int]:
     arr2 = []
@@ -250,19 +227,17 @@ def reverse_list(arr: List[int]) -> List[int]:
     
 
     return arr2
-    
-
 
 # do not modify below this line
 print(reverse_list([1, 2, 3]))
 print(reverse_list([3, 2, 1, 4, 6, 2]))
 print(reverse_list([1, 9, 7, 3, 2, 1, 4, 6, 2]))
 
+
 Rotating List
 Queue Deque
 from typing import List, Deque
 from collections import deque
-
 
 def rotate_list(arr: List[int], k: int) -> Deque[int]:
     queue = deque(arr) # SET ARRAY TO DOUBLE ENDED QUEUE
@@ -286,13 +261,11 @@ Deque
 from typing import List, Deque
 from collections import deque
 
-
 def rotate_list(arr: List[int], k: int) -> Deque[int]:
     queue = deque(arr) # empty the array 
     for i in range(k):
         queue.appendleft(queue.pop())
     return queue
-
 
 # do not modify below this line
 print(rotate_list([1, 2, 3, 4, 5], 0))
@@ -308,7 +281,6 @@ finding the highest number in nested lists
 
 from typing import List
 
-
 def find_max_in_each_list(nested_arr: List[List[int]]) -> List[int]:
     maxList = [] # bc we are returning a list, create empty list to store max
     for sublist in nested_arr: # loop through the sublists
@@ -316,15 +288,14 @@ def find_max_in_each_list(nested_arr: List[List[int]]) -> List[int]:
         maxList.append(highest) # add the highest value to the new list
     return maxList # show the list
             
-
 # do not modify below this line
 print(find_max_in_each_list([[1, 2], [3, 4, 2]]))
 print(find_max_in_each_list([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
 print(find_max_in_each_list([[5, 6, 2, 8], [9], [9, 10], [11, 10, 11]]))
 
+
 2D maps 
 from typing import List
-
 
 def in_bounds(grid: List[List[int]], r: int, c: int) -> bool:
     rows = len(grid)
@@ -335,7 +306,6 @@ def in_bounds(grid: List[List[int]], r: int, c: int) -> bool:
         return False
     else:
         return True
-
 
 # do not modify below this line
 print(in_bounds([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 0, 0))
@@ -351,11 +321,9 @@ Create nested lists with list comprehension
 
 from typing import List
 
-
 def create_grid(rows: int, cols: int, value: int) -> List[List[int]]:
     grid = [[value] * cols for _ in range(rows)]
     return grid
-
 
 # do not modify below this line
 print(create_grid(2, 3, 0))
@@ -367,7 +335,6 @@ print(create_grid(1, 5, 5))
 
 Zip functions for Hash Maps
 from typing import List, Dict
-
 
 def build_hash_map(keys: List[str], values: List[int]) -> Dict[str, int]:
     hm = {} # Create an empty hashmap
@@ -382,7 +349,6 @@ def get_values(hash_map: Dict[str, int], keys: List[str]) -> List[int]:
     for key in keys: # loop through only the keys 
         values.append(hash_map[key]) # append list with these keys values
     return values # return the list
-
 
 # do not modify below this line
 print(build_hash_map(["Alice", "Bob", "Charlie"], [90, 80, 70]))
@@ -399,7 +365,6 @@ Using HashMap with Defaultdict
 from collections import defaultdict
 from typing import List, Dict
 
-
 def count_chars(s: str) -> Dict[str, int]:
     freq = defaultdict(int)
     
@@ -407,7 +372,6 @@ def count_chars(s: str) -> Dict[str, int]:
         freq[letter] += 1
     
     return(freq)
-
 
 def nested_list_to_dict(nums: List[List[int]]) -> Dict[int, List[int]]:
     freq = defaultdict(list)  # ✅ creates a dictionary where each key maps to a list by default
@@ -419,8 +383,6 @@ def nested_list_to_dict(nums: List[List[int]]) -> Dict[int, List[int]]:
             freq[first].append(sublist[i])  # ✅ append each remaining element to the list for this key
 
     return freq
-
-
 
 # do not modify below this line
 print(count_chars("hello"))
@@ -438,13 +400,11 @@ Counter using collections class
 from collections import Counter
 from typing import Counter as CounterType
 
-
 def count_chars(s1: str, s2: str) -> CounterType:
     counter = Counter(s1) # Counts the occurances of a letter/number in a list
     counter.update(s2) # Add the ability to add another list to the counter
     return counter
   
-
 # do not modify below this line
 print(count_chars("hello", "world"))
 print(count_chars("hello", "worldhello"))
@@ -455,22 +415,20 @@ Dictionary Comprehension
 
 from typing import List, Dict
 
-
 def num_to_index(nums: List[int]) -> Dict[int, int]:
     myDict = {num: i for i, num in enumerate(nums)} # num (key): i (value) - for i, num in enumerate(nums)
     return myDict
 # {KEY_EXPRESSION : VALUE_EXPRESSION   for   (loop variables)   in   iterable}
-
 
 # do not modify below this line
 print(num_to_index([1, 2, 3, 4, 5, 6, 7, 8]))
 print(num_to_index([8, 7, 6, 5, 4, 3, 2, 1]))
 print(num_to_index([0, 3, 2, 4, 5, 1]))
 
+
 Dictionary/Hashmap keys() values() items()
 
 from typing import Dict, List, Tuple
-
 
 def get_dict_items(age_dict: Dict[str, int]) -> List[Tuple[str, int]]:
     pairList = [] # Create a list to store the key value pairs
@@ -479,7 +437,6 @@ def get_dict_items(age_dict: Dict[str, int]) -> List[Tuple[str, int]]:
         pairList.append(pair) # append the list with this pair
         # pairList.append((key, value)) # Could also be shortened to this
     return pairList # return the list
-
 
 # do not modify below this line
 print(get_dict_items({'Alice': 25, 'Bob': 30, 'Charlie': 35}))
@@ -527,7 +484,6 @@ same syntax as with dict but without colon as we only have key and not value inp
 
 from typing import List, Set
 
-
 def double_nums(nums: List[int]) -> Set[int]:
     doubledSet = {i * 2 for i in nums} # i x 2 to double the input then for i in nums to loop through and double them
     return doubledSet
@@ -546,10 +502,8 @@ output3 = double_nums([10, 20, 30, 40, 50])
 print(type(output3)) 
 print(sorted(list(output3)))
 
-
 Tranverse hashmap with sets and tuples
 from typing import List, Set, Tuple
-
 
 def grid_to_set(grid: List[List[int]]) -> Set[Tuple[int, int]]:
     setofpairs = set() # create a set
@@ -577,6 +531,7 @@ output4 = grid_to_set([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
 print(type(output4))
 print(sorted(list(output4)))
 
+
 Heaps and Priority Queues
 We accessed the element with the smallest priority, which is 1. The element with the smallest priority is always at index 0. 
 import heapq
@@ -596,11 +551,9 @@ print(heap[0])  # 0
 import heapq
 from typing import List
 
-
 def heap_push(heap: List[int], value: int) -> int:
     heapq.heappush(heap, value)
     return heap[0]
-
 
 # do not modify below this line
 print(heap_push([1, 2, 3], 4))
@@ -609,6 +562,7 @@ print(heap_push([1, 2, 3], 2))
 print(heap_push([4, 6, 7, 8, 12, 9, 10], 2))
 print(heap_push([4, 6, 7, 8, 12, 9, 10], 5))
 
+
 Heapq pop
 
 popping off all items of a heap and add them to a list in the same order they were popped
@@ -616,18 +570,17 @@ popping off all items of a heap and add them to a list in the same order they we
 import heapq
 from typing import List
 
-
 def heap_pop(heap: List[int]) -> List[int]:
     popped = []
     for i in range(len(heap)):
         popped.append(heapq.heappop(heap))
     return popped
 
-
 # do not modify below this line
 print(heap_pop([1, 2, 3]))
 print(heap_pop([1, 3, 2]))
 print(heap_pop([6, 7, 8, 12, 9, 10]))
+
 
 Heapify - convert list into heap
 
@@ -642,7 +595,6 @@ def heapify_strings(strings: List[str]) -> List[str]:
 def heapify_integers(integers: List[int]) -> List[int]:
     heapq.heapify(integers)
     return integers
-
 
 def heap_sort(nums: List[int]) -> List[int]:
     heapq.heapify(nums)
@@ -720,12 +672,11 @@ def get_reverse_sorted(nums: List[int]) -> List[int]:
     # When the heap is empty, we’ve collected all numbers in reverse sorted order
     return result
 
-
-
 # do not modify below this line
 print(get_reverse_sorted([1, 2, 3]))
 print(get_reverse_sorted([5, 6, 4, 2, 7, 3, 1]))
 print(get_reverse_sorted([5, 6, -4, 2, 4, 7, -3, -1]))
+
 
 Heaps nsmallest
 
@@ -734,7 +685,7 @@ from typing import List
 
 
 def get_min_element(arr: List[int]) -> int:
-    return heapq.nsmallest(1, arr)
+    return heapq.nsmallest(1, arr)[0]
 
 
 def get_min_4_elements(arr: List[int]) -> List[int]:
@@ -760,3 +711,96 @@ print(get_min_2_elements([1, 9, 7, 3, 2, 1, 4, 6, 2]))
 print(get_min_2_elements([1, 9, 7, 2, 1, 3, 2, 1, 4, 6, 2, 1]))
 print(get_min_2_elements([1, 9, 7, 2, 3, 2, 4, 6, 2]))
 
+
+Heaps nlargest
+
+import heapq
+from typing import List
+
+def get_max_element(arr: List[int]) -> int:
+    return heapq.nlargest(1, arr)[0]
+
+def get_max_4_elements(arr: List[int]) -> List[int]:
+    # Return elements in *decreasing* order
+    return heapq.nlargest(4, arr)
+
+def get_max_2_elements(arr: List[int]) -> List[int]:
+    # Return elements in *increasing* order
+    max2 = heapq.nlargest(2, arr)
+    return max2[::-1] ## Reverse the list GREAT TRICK
+
+# do not modify below this line
+print(get_max_element([1, 2, 3]))
+print(get_max_element([3, 2, 1, 4, 6, 2]))
+print(get_max_element([1, 9, 7, 3, 2, 1, 4, 6, 2]))
+
+print(get_max_4_elements([4, 9, 7, 3, 2, 7, 4, 6, 2]))
+print(get_max_4_elements([4, 9, 7, 2, 1, 3, 2, 3, 4, 6, 2, 3]))
+print(get_max_4_elements([4, 7, 2, 3, 2, 4, 6, 2]))
+
+print(get_max_2_elements([4, 5, 3, 7]))
+print(get_max_2_elements([8, 8, 7, 9]))
+print(get_max_2_elements([1, 2, 3, 9, 8, 7, 6]))
+
+
+Sorted Dict Basics
+
+It supports the same operations as a regular dictionary, but the keys are always sorted. A sorted dictionary may not contain duplicate keys.
+
+Looping through a sorted dictionary
+sorted_dict = SortedDict({'a': 1, 'b': 2, 'c': 3})
+
+for key, value in sorted_dict.items():
+    print(key, value)
+
+from typing import List
+from sortedcontainers import SortedDict
+
+def remove_keys(sorted_dict: SortedDict[str, int], keys: List[str]) -> SortedDict[str, int]:
+    for key in keys: # loop through the keys
+        if key in sorted_dict: # checking is the key is actually in the dictionary
+            sorted_dict.pop(key) # remove that item
+    return sorted_dict
+        
+def get_values_before_target(sorted_dict: SortedDict[str, int], target: str) -> List[int]:
+    output = [] # create a list to store the values before target
+
+    for key, value in sorted_dict.items(): # loop through the keys and value of the dictionary
+        if key == target: # if the key == target !stop!(break)
+            break
+        output.append(value) # if the key is not the target, add the value to the output list then start the loop again 
+    return output
+
+# do not modify below this line
+print(remove_keys(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35}), ['Bob']))
+print(remove_keys(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40}), ['Bob', 'David']))
+print(remove_keys(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40, 'Eve': 45}), ['Alice', 'Eve']))
+
+print(get_values_before_target(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35}), 'Bob'))
+print(get_values_before_target(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40}), 'David'))
+print(get_values_before_target(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40}), 'Charlie'))
+print(get_values_before_target(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40}), 'Bob'))
+print(get_values_before_target(SortedDict({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40}), 'Alice'))
+
+
+Sorted Set Basics
+
+they store keys in sorted order. Sorted sets may not contain duplicate elements
+from typing import List
+from sortedcontainers import SortedSet
+
+def get_first_three(sorted_set: SortedSet[int], nums1: List[int], nums2: List[int]) -> List[int]:
+    for num in nums1: # loop through nums1 and add them to the sorted set
+        sorted_set.add(num)
+    for num in nums2: # loop through nums 2 and remove them, using discard so they wont throw any error if they are not in the list
+        sorted_set.discard(num)
+    return list(sorted_set)[:3] # return as list of just the first 3 elements
+
+# do not modify below this line
+print(get_first_three(SortedSet(), [1, 2, 3], [4]))
+print(get_first_three(SortedSet([1, 4, 7, 2, 8, 9]), [10], [1, 7, 2]))
+print(get_first_three(SortedSet([1, 2, 3, 7]), [], [4, 5, 6]))
+print(get_first_three(SortedSet([1, 2, 3, 4, 5, 6, 7, 8, 9]), [10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+
+
+NeetCode Python Coding Interview Course Complete🎉
