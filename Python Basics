@@ -431,3 +431,249 @@ print(nested_list_to_dict([[1, 2, 3], [4, 5, 6], [1, 4]]))
 print(nested_list_to_dict([[1, 2, 3, 4], [4, 5, 6, 7], [1, 4, 5, 6]]))
 print(nested_list_to_dict([[5, 2, 3, 4, 5], [4, 5, 6, 7, 8], [5, 6, 7, 8, 9]]))
 print(nested_list_to_dict([[3, 2, 3, 4, 5], [4, 5, 6, 7, 8], [5, 6, 7, 8]]))
+
+
+Counter using collections class
+
+from collections import Counter
+from typing import Counter as CounterType
+
+
+def count_chars(s1: str, s2: str) -> CounterType:
+    counter = Counter(s1) # Counts the occurances of a letter/number in a list
+    counter.update(s2) # Add the ability to add another list to the counter
+    return counter
+  
+
+# do not modify below this line
+print(count_chars("hello", "world"))
+print(count_chars("hello", "worldhello"))
+print(count_chars("areallylongstring", "heyhowisitgoing"))
+
+
+Dictionary Comprehension
+
+from typing import List, Dict
+
+
+def num_to_index(nums: List[int]) -> Dict[int, int]:
+    myDict = {num: i for i, num in enumerate(nums)} # num (key): i (value) - for i, num in enumerate(nums)
+    return myDict
+# {KEY_EXPRESSION : VALUE_EXPRESSION   for   (loop variables)   in   iterable}
+
+
+# do not modify below this line
+print(num_to_index([1, 2, 3, 4, 5, 6, 7, 8]))
+print(num_to_index([8, 7, 6, 5, 4, 3, 2, 1]))
+print(num_to_index([0, 3, 2, 4, 5, 1]))
+
+Dictionary/Hashmap keys() values() items()
+
+from typing import Dict, List, Tuple
+
+
+def get_dict_items(age_dict: Dict[str, int]) -> List[Tuple[str, int]]:
+    pairList = [] # Create a list to store the key value pairs
+    for key, value in age_dict.items(): # loop through the items in the dictionary
+        pair = key, value # store the value of a key value pair
+        pairList.append(pair) # append the list with this pair
+        # pairList.append((key, value)) # Could also be shortened to this
+    return pairList # return the list
+
+
+# do not modify below this line
+print(get_dict_items({'Alice': 25, 'Bob': 30, 'Charlie': 35}))
+print(get_dict_items({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40}))
+print(get_dict_items({'Bob': 30, 'David': 40, 'Charlie': 35, 'Alice': 25, 'Eve': 45}))
+print(get_dict_items({'Alice': 25, 'Bob': 30, 'Charlie': 35, 'David': 40, 'Eve': 45, 'Frank': 50}))
+
+
+Hash Set
+from typing import List, Set
+
+def build_hash_set(keys: List[str]) -> Set[str]:
+    my_set = set() # Create a set to add the keys to
+
+    for i in keys:
+        my_set.add(i) # add each key
+    return my_set
+
+def check_keys(hash_set: Set[str], keys: List[str]) -> List[bool]:
+    boolist = [] # Create an empty list to store the boolean results
+    for i in keys:
+        #result = i in hash_set # store boolean value if item is present in the hash set
+        #boolist.append(result) # add to list
+        boolist.append(i in hash_set) # also can be done in single line
+    return boolist
+
+# do not modify below this line
+
+output1 = build_hash_set(["Alice", "Bob", "Charlie"])
+print(type(output1))         # check the type of the output
+print(sorted(list(output1))) # set order is not guaranteed so we need to sort the list
+
+output2 = build_hash_set(["XY", "XX", "YY", "XY", "YX"]) 
+print(type(output2))         # check the type of the output
+print(sorted(list(output2))) # set order is not guaranteed so we need to sort the list
+
+print(check_keys({"Alice", "Bob", "Charlie"}, ["Alice", "Bob", "Charlie", "David"]))
+print(check_keys({'a', 'b', 'c'}, ['a', 'd', 'c']))
+print(check_keys({'a', 'c'}, ['d', 'c']))
+
+
+Set Comprehension
+
+same syntax as with dict but without colon as we only have key and not value input
+
+from typing import List, Set
+
+
+def double_nums(nums: List[int]) -> Set[int]:
+    doubledSet = {i * 2 for i in nums} # i x 2 to double the input then for i in nums to loop through and double them
+    return doubledSet
+
+# do not modify below this line
+
+output1 = double_nums([1, 2, 3])
+print(type(output1)) 
+print(sorted(list(output1)))
+
+output2 = double_nums([4, -2, 0, 7])
+print(type(output2)) 
+print(sorted(list(output2)))
+
+output3 = double_nums([10, 20, 30, 40, 50])
+print(type(output3)) 
+print(sorted(list(output3)))
+
+
+Tranverse hashmap with sets and tuples
+from typing import List, Set, Tuple
+
+
+def grid_to_set(grid: List[List[int]]) -> Set[Tuple[int, int]]:
+    setofpairs = set() # create a set
+    for r in range(len(grid)): # since its a 2d array loop in twice / first loop through full list
+        for c in range(len(grid[0])): # loop through secondary list with the [0] to get further in
+            if grid[r][c] == 1: # check if the value is 1
+                setofpairs.add((r, c)) # add the coords of that one to the set as a tuple
+    return setofpairs
+
+# do not modify below this line
+
+output1 = grid_to_set([[1, 0, 1], [0, 1, 0], [1, 0, 1]])
+print(type(output1))
+print(sorted(list(output1)))
+      
+output2 = grid_to_set([[1, 0, 0], [0, 0, 0]])
+print(type(output2))
+print(sorted(list(output2)))
+
+output3 = grid_to_set([[1, 1, 1], [1, 1, 1]])
+print(type(output3))
+print(sorted(list(output3)))
+
+output4 = grid_to_set([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+print(type(output4))
+print(sorted(list(output4)))
+
+Heaps and Priority Queues
+We accessed the element with the smallest priority, which is 1. The element with the smallest priority is always at index 0. 
+import heapq
+
+heap = [] # min heap
+
+heapq.heappush(heap, 3)
+heapq.heappush(heap, 1)
+
+print(heap[0])  # 1
+
+heapq.heappush(heap, 0)
+
+print(heap[0])  # 0
+
+
+import heapq
+from typing import List
+
+
+def heap_push(heap: List[int], value: int) -> int:
+    heapq.heappush(heap, value)
+    return heap[0]
+
+
+# do not modify below this line
+print(heap_push([1, 2, 3], 4))
+print(heap_push([1, 2, 3], 0))
+print(heap_push([1, 2, 3], 2))
+print(heap_push([4, 6, 7, 8, 12, 9, 10], 2))
+print(heap_push([4, 6, 7, 8, 12, 9, 10], 5))
+
+Heapq pop
+
+popping off all items of a heap and add them to a list in the same order they were popped
+
+import heapq
+from typing import List
+
+
+def heap_pop(heap: List[int]) -> List[int]:
+    popped = []
+    for i in range(len(heap)):
+        popped.append(heapq.heappop(heap))
+    return popped
+
+
+# do not modify below this line
+print(heap_pop([1, 2, 3]))
+print(heap_pop([1, 3, 2]))
+print(heap_pop([6, 7, 8, 12, 9, 10]))
+
+Heapify - convert list into heap
+
+import heapq
+from typing import List
+
+
+def heapify_strings(strings: List[str]) -> List[str]:
+    heapq.heapify(strings)
+    return strings
+
+def heapify_integers(integers: List[int]) -> List[int]:
+    heapq.heapify(integers)
+    return integers
+
+
+def heap_sort(nums: List[int]) -> List[int]:
+    heapq.heapify(nums)
+    #return sorted(nums) another way to do it
+    result = []
+    while nums:
+        result.append(heapq.heappop(nums))
+    return result
+# do not modify below this line
+print(heapify_strings(["b", "a", "e", "c", "d"]))
+print(heapify_integers([3, 4, 5, 1, 2, 6]))
+print(heap_sort([3, 4, 5, 1, 2, 6]))
+
+Max Heap - keeping the max / largest value at the top
+import heapq
+from typing import List
+
+def get_reverse_sorted(nums: List[int]) -> List[int]:
+    max_heap = []
+    heapq.heapify(nums)
+
+    for num in nums:
+        heapq.heappush(max_heap, -num)
+
+    res = []
+    while max_heap:
+        res.append(-heapq.heappop(max_heap))
+    return res
+# do not modify below this line
+print(get_reverse_sorted([1, 2, 3]))
+print(get_reverse_sorted([5, 6, 4, 2, 7, 3, 1]))
+print(get_reverse_sorted([5, 6, -4, 2, 4, 7, -3, -1]))
+
+Custom Heap - create a heap with a custom profile
