@@ -1,4 +1,4 @@
-Microsoft Prep
+DSA Course
 
 # Print n times (user inputted)
 n = input("enter a number: ")
