@@ -28,3 +28,13 @@ class Solution:
                 nums[l] = nums[r] # if its not the same then put the value of r into the position of l
                 l += 1 # because something was added to l, l can move up to the next spot
         return l # return l bc that will return the position which is what the q wants
+
+Remove Element - Good Two pointer Template
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        l = 0 # set up a value to store the values were want to keep
+        for r in range(len(nums)): # loop through the array as R
+            if nums[r] != val: # if the number R is at does NOT equal the val we want to remove
+                nums[l] = nums[r] # store that number in our l variable
+                l += 1 # move l along if a value is placed in there
+        return l # once R hits the boundary of the list return what was placed in l, this would be every number that is NOT the val
