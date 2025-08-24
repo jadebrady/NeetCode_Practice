@@ -1,0 +1,30 @@
+Algorithms and Data Structures - NeetCode Course
+
+Static Arrays (fixed sized arrays)
+
+Contiguous block of data, stored the same way in RAM
+Read or Write to data
+
+Reading a value happens in constant time O(1)
+
+Array time complexity
+r/w element O(1)
+insert/remove at the end O(1)
+insert middle O(n)
+remove middle O(n)
+
+Remove Duplicates From Sorted Array
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        # uniquenums = sorted(set(nums))
+        # nums[:len(uniquenums)] = uniquenums
+        # return len(uniquenums)
+ 
+ # Two pointers method
+        l = 1 # l moves only when a unique value is added to the spot its in
+        for r in range(1, len(nums)):
+            if nums[r] != nums[r - 1]: # r is checking if the number r is at is the same as the previous number
+                nums[l] = nums[r] # if its not the same then put the value of r into the position of l
+                l += 1 # because something was added to l, l can move up to the next spot
+        return l # return l bc that will return the position which is what the q wants
