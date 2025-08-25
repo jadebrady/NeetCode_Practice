@@ -143,3 +143,139 @@ class Solution:
         node.next = list1 or list2
         return dummy.next
 
+Hash Map Exercise
+
+Contains Duplicate
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
+        count = {}
+        for num in nums:
+            if num in count:
+                return True
+            else:
+                count[num] = 1
+        return False
+
+        # As if you want to count how many 
+        # times a number occurs in your list 
+        # but as soon as theres a duplicate you 
+        # can return True rather than any 
+        # incrementation and return False if 
+        # all counts return 1 occurance
+
+Python one liner
+def hasDuplicate(self, nums: List[int]) -> bool:
+    return len(nums) != len(set(nums))
+       
+Doubly Linked Lists
+
+Adding a node to a doubly linked list
+say we have node 1,2,3 and we are adding node 4.
+
+tail.next = ListNode4
+ListNode4.prev = tail
+tail = tail.next
+
+# the order of the above code is important
+
+remove the node:
+say we have node 1,2,3
+to remove 3
+instead of pointing 2 to 3 point that pointer to null. this makes it the end of the list. 
+Since theres no reference to 3 now, it does not exist
+Code of this operation
+node2 = tail.prev # name the tails prev node, node 2
+node2.next = null # make the node after node 2 null basically removing 3
+tail = node2 # now 2 is the last one, name it tail.
+
+Stacks can be implemented with linked list
+can't access a random element like with arrays becuase you have to follow the nodes 
+there.
+
+
+class Node:
+    def __init__(self, val: int):
+        self.val = val
+        self.next = None
+        self.prev = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def addAtHead(self, val: int) -> None:
+        newNode = Node(val)
+        if not self.head:
+            self.head = self.tail = newNode
+        else:
+            newNode.next = self.head
+            self.head.prev = newNode
+            self.head = newNode
+
+    def addAtTail(self, val: int) -> None:
+        newNode = Node(val)
+        if not self.tail:
+            self.head = self.tail = newNode
+        else:
+            self.tail.next = newNode
+            newNode.prev = self.tail
+            self.tail = newNode
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        # Case 1: insert at head
+        if index == 0:
+            self.addAtHead(val)
+            return
+
+        newNode = Node(val)
+        curr = self.head
+        pos = 0
+
+        # Move to node at position `index - 1`
+        while curr and pos < index - 1:
+            curr = curr.next
+            pos += 1
+
+        if not curr:  # index is out of bounds
+            return
+
+        # Case 2: insert at the end (after tail)
+        if curr == self.tail:
+            self.addAtTail(val)
+            return
+
+        # Case 3: insert in the middle
+        newNode.next = curr.next
+        newNode.prev = curr
+        curr.next.prev = newNode
+        curr.next = newNode
+
+Queues
+
+Fifo - first in first out
+
+enqueue - add to end
+dequeue - remove from front
+
+class MyStack:
+
+    def __init__(self):
+        self.stack = deque()
+        
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+
+    def pop(self) -> int:
+        return self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def empty(self) -> bool:
+        return len(self.stack) == 0
+        
+
+
