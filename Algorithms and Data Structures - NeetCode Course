@@ -73,7 +73,7 @@ One common use case of dynamic arrays
 LIFO data structure (last in, first out)
 
 Valid Parenthesis (Very common interview question)
-Uses Stacks as the answer
+Uses Stacks data structure
 
 class Solution:
     def isValid(self, s: str) -> bool:
@@ -92,3 +92,54 @@ class Solution:
         
         return True if not stack else False
                 
+
+Linked Lists
+Made up of List Nodes
+list nodes containt two attributes: Value, Next
+Connected via pointers
+Store elements in an ordered sequence
+
+Reverse Linked List
+Useful for future questions as it maybe be a small portion of other questions
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # Two pointer solution
+        prev, curr = None, head # Set the two pointers prev at null/None and current at head
+        while curr: # while current isnt null
+            nxt = curr.next 
+            curr.next = prev #
+            prev = curr # set the previous value to the current value
+            curr = nxt # then send the current value forward to get the new current value
+        head = prev
+        return head # prev is now the new head
+
+
+Merge Two Sorted Linked Lists
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = node = ListNode()
+
+        while list1 and list2:
+            if list1.val < list2.val:
+                node.next = list1
+                list1 = list1.next
+            else:
+                node.next = list2
+                list2=list2.next
+            node=node.next
+        node.next = list1 or list2
+        return dummy.next
+
