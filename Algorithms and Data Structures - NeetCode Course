@@ -38,3 +38,57 @@ class Solution:
                 nums[l] = nums[r] # store that number in our l variable
                 l += 1 # move l along if a value is placed in there
         return l # once R hits the boundary of the list return what was placed in l, this would be every number that is NOT the val
+
+Dynamic Arrays
+The default in Python
+
+Array time complexity
+r/w element O(1)
+insert/remove at the end O(1)
+insert middle O(n)
+remove middle O(n)
+
+Concatenation of Array
+
+class Solution:
+    def getConcatenation(self, nums: List[int]) -> List[int]:
+        ans = []
+        for i in range(2):
+            for n in nums:
+                ans.append(n)
+    
+        return ans
+
+
+Stacks
+
+Operation    Big-O Time
+Push         O(1)
+Pop          O(1)
+Peek         O(1)
+
+Stacks are Arrays
+Top of the stack is the end
+One common use case of dynamic arrays
+LIFO data structure (last in, first out)
+
+Valid Parenthesis (Very common interview question)
+Uses Stacks as the answer
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        closeToOpen = {")" : "(", "]" : "[", "}" : "{"} # mapping the closing bracket to its opening bracket
+
+        for char in s:
+            if char in closeToOpen: # checks if its a closing bracket because this checks the keys of the map
+                if stack and stack[-1] == closeToOpen[char]: # "if stack = checks is the stack empty" 
+                # and if stack-1(one before the one were lookin at is the corresponding closing bracket)
+                    stack.pop() # they match so pop off the stack
+                else:
+                    return False # if they dont match thats false
+            else:
+                stack.append(char)
+        
+        return True if not stack else False
+                
