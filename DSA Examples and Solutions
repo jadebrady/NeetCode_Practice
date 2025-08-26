@@ -94,4 +94,60 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
     # return all groups of anagrams as a list of lists
     return list(res.values())
 
-    
+Recursion
+
+One-Branch
+n! = n* (n-1) * (n-2) *...* 1
+
+n! = n * (n-1)!
+Good for sub problems
+
+int factorial(int n){
+    if (n <= 1){
+    return 1;
+    }
+    return n * factorial(n-1);
+}
+
+Recursive functions have two parts:
+
+    The base case.
+    The recursive case.
+
+
+Recursive Solution to Reverse a Linked List
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+
+        newHead = head
+        if head.next:
+            newHead = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+
+        return newHead
+
+
+Two-Branch
+
+Fibonacci Number
+F(n) = F(n-1) + F(n-2)
+F(0) = 0 F(1) = 1
+int fib(int n) {
+    if(n<= 1){
+    return n;
+    }
+    return fib(n-1)+fib(n-2);
+}
+
+Climbing Stairs
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 2:
+            return n
+        return self.climbStairs(n-1) + self.climbStairs(n-2)
+
+This recursive solution works but it is so slow and cant go past 44 as the test case. Valid just too slow
