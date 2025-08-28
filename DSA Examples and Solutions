@@ -293,3 +293,69 @@ class Solution:
             return self.searchBST(root.left, val) # other wise if its smaller search the left side
         else:
             return self.searchBST(root.right, val) # and if its bigger search the right side
+
+Insert into Binary Tree
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return TreeNode(val)
+        if val > root.val:
+            root.right = self.insertIntoBST(root.right, val)
+        elif val < root.val:
+            root.left = self.insertIntoBST(root.left, val)
+        return root
+        
+
+Deleting from a Binary Tree
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        if not root:
+            return None
+
+        # Step 1: Traverse tree to find the node
+        if key < root.val:
+            root.left = self.deleteNode(root.left, key)
+        elif key > root.val:
+            root.right = self.deleteNode(root.right, key)
+
+        else:
+            # Found the node to delete
+
+            # Case 1: No children (leaf node)
+            if not root.left and not root.right:
+                return None
+
+            # Case 2: One child
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
+
+            # Case 3: Two children
+            minNode = minValue(root.right)
+            root.val = minNode.val
+            root.right = self.deleteNode(root.right, minNode.val)
+
+        return root
+            
+
+def minValue(root):
+    curr = root
+    while curr and curr.left:
+        curr = curr.left
+    return curr
