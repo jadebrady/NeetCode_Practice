@@ -151,3 +151,125 @@ class Solution:
         return self.climbStairs(n-1) + self.climbStairs(n-2)
 
 This recursive solution works but it is so slow and cant go past 44 as the test case. Valid just too slow
+
+
+Insertion Sorting
+
+sudo code
+
+for (i from 1 to arr.length){
+    j = i - 1
+    while j > - 0 and arr[j +1]< arr[j]{
+    tmp = arr[j+ 1]
+    arr[j + 1] = arr[j]
+    arr[j] = tmp
+    j = -1
+    }
+}
+
+Stable vs Non-Stable Sorting
+Stable maintains the original order of duplicated number in the new sorted array.
+
+7,3,7
+sorted to 3, first 7 from last list, second 7 from last list
+
+Bubble code sudo code
+procedure bubbleSort(A):
+    n ← length(A)
+    for i from 0 to n - 1:
+        swapped ← false
+        for j from 0 to n - i - 2:
+            if A[j] > A[j + 1]:
+                swap A[j], A[j + 1]
+                swapped ← true
+        if swapped = false:
+            break   // list already sorted
+
+Linear Search sudo code
+
+Linear Search just finding a target n using a for loop
+procedure linearSearch(A, target):
+    for i from 0 to length(A) - 1:
+        if A[i] = target:
+            return i   // index found
+    return -1          // not found
+
+Find target integer in array and return index:
+my Solution:
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        for e, i in enumerate(nums):
+            if target == i:
+                return e
+        return -1
+
+
+Binary Trees
+have nodes like linked lists
+uses pointers to connect them together
+similar to doubly linked list nodes
+left and right pointer
+nodes have parent child relationship. top ones are parents lower are children
+if  a node has no children its considered a leaf node
+top node is called the root node
+only one root and can have multiple leaf nodes.
+not allowed cycles
+all nodes must have connections
+height property - height of single node is 1
+a descedant is any node thats under it
+ancestor opposite anything above
+
+Binary Search Tree (BST)
+have a sorted property
+BST dont have duplicates usually
+right sub tree values must be higher than the root and left sub tree values must be lower than the root
+
+def search(root, target):
+if not root:
+return false
+
+if target > root.val:
+    return search(root.right, target)
+elif target < root.val:
+    return search(root.left, target)
+else:
+    return True
+
+BST Insert
+
+def insert(root, val):
+    if not root:
+        return TreeNode(val)
+    if val > root.val:
+        root.right = insert(root.right, val)
+    elif val < root.val:
+        root.left = insert(root.left, val)
+    return root
+
+
+find min - go down the left
+
+def minValue(root):
+curr= root
+while curr and curr.left:
+    curr = curr.left
+return curr
+
+max would be the same but going right
+
+Remove function
+
+def remove(root,val):
+if not root:
+    return None
+
+if val > root.val:
+    root.right = remove(root.right, val)
+elif val < root.val:
+    root.left = remove(root.left, val)
+else:
+    minNode = minValueNode(root.right)
+    root.val = minNode.val
+    root.right = remove(root.right, minNode.val)
+return root
